@@ -44,8 +44,8 @@ const ScoreTable = ({ navigation, route }) => {
         elevation: 4,
         flexDirection: 'row', marginBottom: wh(0.01), width: ww(0.9), alignSelf: 'center'
       }}>
-        <Text style={{ textAlign: 'left', alignSelf: 'center' }}>Skor</Text>
-        <Text style={{ textAlign: 'left', alignSelf: 'center' }}>Zorluk Derecesi</Text>
+        <Text style={{ textAlign: 'left', alignSelf: 'center', color: '#000' }}>Skor</Text>
+        <Text style={{ textAlign: 'left', alignSelf: 'center', color: '#000' }}>Zorluk Derecesi</Text>
       </View>
       <FlatList
         data={leaderboard}
@@ -70,10 +70,10 @@ const ScoreTable = ({ navigation, route }) => {
                 flexDirection: 'row', marginBottom: wh(0.02), width: ww(0.9), alignSelf: 'center'
               }}>
               <View style={{ alignContent: 'flex-start' }}>
-                <Text style={{ alignSelf: 'center' }}>{item.item.skor}</Text>
+                <Text style={{ alignSelf: 'center', color: '#000' }}>{item.item.skor}</Text>
               </View>
               <View style={{ alignContent: 'flex-start' }}>
-                <Text style={{ alignSelf: 'center' }}>{item.item.difficulty}</Text>
+                <Text style={{ alignSelf: 'center', color: '#000' }}>{item.item.difficulty}</Text>
               </View>
             </View>
           )

@@ -9,7 +9,7 @@ const Headers = ({ title, onPress, icon, onPressRight, rightIconn, titlee }) => 
     return (
         <Header
             statusBarProps={{ barStyle: 'light-content' }}
-            containerStyle={{ backgroundColor: 'transparent', borderBottomColor: 'transparent', borderBottomWidth: 0 }}
+            containerStyle={{ backgroundColor: '#fff', borderBottomColor: '#fff', borderBottomWidth: 0 }}
             leftComponent={
                 <>
                     {

@@ -16,7 +16,7 @@ const SplashScreen = ({ navigation }) => {
     setTimeout(() => {
       setAnimating(false);
       navigation.navigate("TabStack")
-    }, 5000);
+    }, 2000);
   }, []);
 
   return (
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#307ecc',
+    backgroundColor: '#0a2449',
   },
   activityIndicator: {
     alignItems: 'center',
