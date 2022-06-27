@@ -1,10 +1,8 @@
 import React, { Component, useEffect, useState, useRef } from "react";
 import { View, Text, SafeAreaView, StatusBar, Image, TouchableOpacity, Modal, Animated, Dimensions, StyleSheet, Alert } from 'react-native'
-import { CountdownCircleTimer } from 'react-native-countdown-circle-timer'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 const { width, height } = Dimensions.get('window');
 import axios from 'axios';
-import DropdownAlert from 'react-native-dropdownalert';
 import { AppColorGreen, Black, White } from '../helpers/colors'
 import Headers from "../components/Header"
 import { ww, uniqueArr, wh } from "../helpers";

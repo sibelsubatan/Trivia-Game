@@ -8,7 +8,7 @@ import { MenuIcon, CheckIcon, SearchIcon, BackIcon, ArrowLeftIcon } from '../ass
 const Headers = ({ title, onPress, icon, onPressRight, rightIconn, titlee }) => {
     return (
         <Header
-            statusBarProps={{ barStyle: 'light-content' }}
+            statusBarProps={{ barStyle: 'light-content', backgroundColor: "#fff" }}
             containerStyle={{ backgroundColor: '#fff', borderBottomColor: '#fff', borderBottomWidth: 0 }}
             leftComponent={
                 <>

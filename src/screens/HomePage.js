@@ -18,6 +18,7 @@ import Headers from "../components/Header";
 import axios from 'axios';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { ww } from "../helpers";
+import { Root, Popup } from 'popup-ui'
 
 const HomePage = ({ navigation, route }) => {
 
@@ -25,17 +26,15 @@ const HomePage = ({ navigation, route }) => {
   const [categoryName, setCategoryName] = useState("")
   const [categoryOpen, setCategoryOpen] = useState(false);
   const [DifficultyOpen, setDifficultyOpen] = useState(false);
-
+  const [error, setError] = useState(false);
   const [value, setValue] = useState(null);
   const [difficultyValue, setDifficultyValue] = useState(null);
 
   const [difficulty, setDifficulty] = useState([
-    { label: 'Easy', value: 'easy' },
-    { label: 'Medium', value: 'medium' },
-    { label: 'Hard', value: 'hard' }
+    { label: 'Kolay', value: 'easy' },
+    { label: 'Orta', value: 'medium' },
+    { label: 'Zor', value: 'hard' }
   ]);
-  const dropDownAlertRef = useRef(null);
-
   useEffect(() => {
     getData();
   }, []);
@@ -60,64 +59,69 @@ const HomePage = ({ navigation, route }) => {
   };
 
   const Choose = () => {
-    if (difficultyValue != "" && value != "") {
+    if (difficultyValue != null && value != null) {
       console.log("difficultyValue", difficultyValue)
 
       console.log("value", value)
       navigation.navigate("StartTheGame", { categoryName: value, difficulty: difficultyValue })
     }
-    else if (value === "" && difficultyValue === "") {
+    else if (value === null || difficultyValue === null) {
       Popup.show({
         type: 'Danger',
         button: true,
         textBody: 'Kategori ve zorluk derecesi seçiniz',
         buttonText: 'Tamam',
-        callback: () => navigation.goBack()
+        callback: () => {
+          Popup.hide()
+        },
+
       })
     }
 
   }
   return (
-    <View style={styles.container}>
-      <Headers title={'Anasayfa'} />
-      <View style={{ alignSelf: 'center', paddingHorizontal: ww(0.1), paddingVertical: ww(0.05), zIndex: 2, }}>
-        <DropDownPicker
-          placeholder="Kategori seçiniz"
-          placeholderStyle={{
-            color: "grey",
-          }}
-          open={categoryOpen}
-          value={value}
-          items={categoryList}
-          setOpen={setCategoryOpen}
-          setValue={setValue}
-          setItems={setCategoryList}
-          style={{ backgroundColor: 'transparent' }}
-        />
-      </View>
+    <Root>
+      <View style={styles.container}>
+        <Headers title={'Anasayfa'} />
+        <View style={{ alignSelf: 'center', paddingHorizontal: ww(0.1), paddingVertical: ww(0.05), zIndex: 2, }}>
+          <DropDownPicker
+            placeholder="Kategori seçiniz"
+            placeholderStyle={{
+              color: "grey",
+            }}
+            open={categoryOpen}
+            value={value}
+            items={categoryList}
+            setOpen={setCategoryOpen}
+            setValue={setValue}
+            setItems={setCategoryList}
+            style={{ backgroundColor: 'transparent' }}
+          />
+        </View>
 
-      <View style={{ alignSelf: 'center', paddingHorizontal: ww(0.1), paddingVertical: ww(0.05), zIndex: 1 }}>
-        <DropDownPicker
-          placeholder="Zorluk derecesi seçiniz"
-          placeholderStyle={{
-            color: "grey",
-          }}
-          open={DifficultyOpen}
-          value={difficultyValue}
-          items={difficulty}
-          setOpen={setDifficultyOpen}
-          setValue={setDifficultyValue}
-          setItems={setDifficulty}
-          style={{ backgroundColor: 'transparent' }}
-        />
-      </View>
-      <NativeBaseProvider>
-        <Center>
-          <Button style={{ backgroundColor: '#00a896', }} onPress={() => { Choose() }}>Oyunu Başlat</Button>
-        </Center>
-      </NativeBaseProvider>
+        <View style={{ alignSelf: 'center', paddingHorizontal: ww(0.1), paddingVertical: ww(0.05), zIndex: 1 }}>
+          <DropDownPicker
+            placeholder="Zorluk derecesi seçiniz"
+            placeholderStyle={{
+              color: "grey",
+            }}
+            open={DifficultyOpen}
+            value={difficultyValue}
+            items={difficulty}
+            setOpen={setDifficultyOpen}
+            setValue={setDifficultyValue}
+            setItems={setDifficulty}
+            style={{ backgroundColor: 'transparent' }}
+          />
+        </View>
+        <NativeBaseProvider>
+          <Center>
+            <Button style={{ backgroundColor: '#00a896', }} onPress={() => { Choose() }}>Oyunu Başlat</Button>
+          </Center>
+        </NativeBaseProvider>
 
-    </View>
+      </View>
+    </Root>
 
   );
 
@@ -126,7 +130,7 @@ const HomePage = ({ navigation, route }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'transparent'
+    backgroundColor: '#fff'
   }
 });
 export default HomePage;
